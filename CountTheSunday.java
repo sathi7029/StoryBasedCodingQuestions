@@ -24,14 +24,36 @@ Now total number of days are 13. It means 6 days to first sunday and then remain
 
 
 import java.util.Scanner;
+import java.util.HashMap;
 class CountTheSunday{
+static int countTheNumberOfSunday(String d,int n){
+HashMap<String,Integer>mp=new HashMap<>();
+mp.put("sun",0);
+mp.put("mon",1);
+mp.put("tues",2);
+mp.put("wed",3);
+mp.put("thus",4);
+mp.put("fri",5);
+mp.put("sat",6);
 
+int si=mp.get(d.toLowerCase());
+int dus=(7-si)%7;
+if(dus==0){
+dus=7;
+}
+
+if(n<dus)return 0;
+
+int rd=n-dus;
+int res=1+(rd/7);
+return res;
+}
 public static void main(String args[]){
 
 Scanner sc=new Scanner(System.in);
 String d=sc.nextLine();
 int n=sc.nextInt();
-
+System.out.println(countTheNumberOfSunday(d,n));
 sc.close();
 }
 }
